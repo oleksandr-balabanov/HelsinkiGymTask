@@ -1,4 +1,6 @@
+import os
 import logging
+from dotenv import load_dotenv 
 from src.lib.logging.logger import setup_logging
 from src.projects.hietaniemi_gym.data.data_processing.data_loader import (
     load_gym_data, 
@@ -23,7 +25,7 @@ from src.projects.hietaniemi_gym.data.data_analysis.data_visualization.data_plot
     plot_mean_gym_usage_vs_precipitation
 )
 
-from src.projects.hietaniemi_gym.utils.file_manager import get_data_save_dir
+from src.projects.hietaniemi_gym.utils.file_manager import get_data_dir, save_data
 from src.projects.hietaniemi_gym.data.data_consts import DEVICE_COLUMNS, TIME_COL_NAME
 
 
@@ -36,7 +38,6 @@ def data_analysis_pipeline(gym_data_path, weather_data_path):
     gym_data = load_gym_data(gym_data_path)
     logging.info("Loading weather data from {}".format(weather_data_path))
     weather_data = load_weather_data(weather_data_path)
-    
 
     # Clean data
     logging.info("Cleaning gym data")
@@ -44,12 +45,9 @@ def data_analysis_pipeline(gym_data_path, weather_data_path):
     logging.info("Cleaning weather data")
     weather_data_cleaned = data_clean_na(weather_data)
 
-
     # Data transformations
     logging.info("Transforming data: Aggregating to hourly usage")
     gym_hourly_data = aggregate_hourly_usage(gym_data_cleaned, TIME_COL_NAME)
-
-
 
     # Merge datasets
     logging.info("Merging datasets")
@@ -60,12 +58,14 @@ def data_analysis_pipeline(gym_data_path, weather_data_path):
     logging.info("Transforming data: Adding hour feature")
     merged_data = add_hour_feature(merged_data, TIME_COL_NAME)
     logging.info("Transforming data: Adding sum of minutes feature")
-    merged_data = add_sum_minutes_feature(merged_data, DEVICE_COLUMNS)  # Adjust as necessary
+    merged_data = add_sum_minutes_feature(merged_data, DEVICE_COLUMNS)  
 
-    # Data plotting
-    save_dir = get_data_save_dir()  # Get or create the directory to save the plots
+    # save data
+    save_dir = get_data_dir(dir_name='dataset') 
+    save_data(merged_data, save_dir)
 
     logging.info("Plotting total device usage")
+    save_dir = get_data_dir(dir_name='imgs') 
     plot_total_device_usage(merged_data, dir=save_dir)
 
     logging.info("Plotting mean usage per hour")
@@ -104,6 +104,13 @@ def categorize_day(day):
 
 
 if __name__=='__main__':
-    gym_data_path = 'notebooks\helsinki-gym\hietaniemi-gym-data.csv'
-    weather_data_path = 'notebooks\helsinki-gym\kaisaniemi-weather-data.csv'
+    # load env
+    app_env = 'development'
+    env_file = f"config/.env.{app_env}"
+    load_dotenv(dotenv_path=env_file)
+
+    # execute pipeline
+    gym_data_path = os.getenv('GYM_DATA_PATH')
+    weather_data_path = os.getenv('WEATHER_DATA_PATH')
+    print(gym_data_path, weather_data_path)
     data_analysis_pipeline(gym_data_path, weather_data_path)

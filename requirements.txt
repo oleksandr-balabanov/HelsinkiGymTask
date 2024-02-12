@@ -4,7 +4,8 @@ matplotlib
 scikit-learn
 ipykernel
 dill
-flask
 pytest
 joblib
+python-dotenv
+torch
 #-e .
