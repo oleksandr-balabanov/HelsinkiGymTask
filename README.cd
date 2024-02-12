@@ -1,1 +1,58 @@
 Helsinki Gym Task by Oleksandr Balabanov
+
+The project is organized as follows:
+
+root/
+│
+├── artifacts/
+│   └── [project_name]/
+│       └── [version]/
+│           ├── data/
+│           └── models/
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+│
+├── config/
+│   ├── .env.development
+│   ├── .env.test
+│   ├── .env.production
+│
+├── docs/
+│   └── [project_name]/
+│
+├── notebooks/
+│   └── [project_name]/
+│
+├── src/
+│   ├── lib/
+│   │   └── logging/
+│   │
+│   └── projects/
+│       └── [project_name]/
+│           ├── data/
+│           ├── model/
+│           ├── pipelines/
+│           └── utils/
+│
+├── tests/
+│   └── [project_name]/
+│       ├── unit/
+│       │   ├── model/
+│       │   └── data/
+│       ├── integration/
+│       │   ├── model/
+│       │   └── data/
+│       └── e2e/
+│           ├── model/
+│           └── data/
+│
+├── venv/
+├── .gitignore
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── setup.py
