@@ -1,0 +1,54 @@
+root/
+│
+├── artifacts/
+│   └── [project_name]/
+│       └── [version]/
+│           ├── data/
+│           └── models/
+│
+├── .github/
+│   └── workflows/
+│       ├── ci.yml
+│       └── cd.yml
+│
+├── config/
+│   ├── .env.development
+│   ├── .env.test
+│   ├── .env.production
+│
+├── docs/
+│   └── [project_name]/
+│
+├── notebooks/
+│   └── [project_name]/
+│
+├── src/
+│   ├── lib/
+│   │   └── logging/
+│   │       └── logger.py
+│   └── projects/
+│       └── [project_name]/
+│           ├── data/
+│           ├── model/
+│           ├── pipelines/
+│           └── utils/
+│
+├── tests/
+│   └── [project_name]/
+│       ├── unit/
+│       │   ├── model/
+│       │   └── data/
+│       ├── integration/
+│       │   ├── model/
+│       │   └── data/
+│       └── e2e/
+│           ├── model/
+│           └── data/
+│
+├── venv/
+├── .gitignore
+├── Dockerfile
+├── LICENSE
+├── README.md
+├── requirements.txt
+└── setup.py
