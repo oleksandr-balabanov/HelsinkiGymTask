@@ -14,7 +14,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+#lib/
 lib64/
 parts/
 sdist/
@@ -130,6 +130,7 @@ env.bak/
 venv.bak/
 artifacts/
 config/
+Dockerfile
 
 # Spyder project settings
 .spyderproject

@@ -30,14 +30,12 @@ def load_weather_data(file_path: str) -> pd.DataFrame:
     try:
         logging.info(f"Loading weather data from {file_path}")
         weather_df = pd.read_csv(file_path)
-        weather_df['Hour'] += ':00:00'
-        weather_df['date'] = pd.to_datetime(
-            weather_df['Year'].astype(str) + '-' +
-            weather_df['Month'].astype(str).str.zfill(2) + '-' +
-            weather_df['Day'].astype(str).str.zfill(2) + ' ' +
-            weather_df['Hour']
-        )
-        weather_df['date'] = weather_df['date'].dt.tz_localize('UTC')
+        weather_df['Hour']  = weather_df['Hour'] + ':00'
+        weather_df['time'] = pd.to_datetime(weather_df['Year'].astype(str) + '-' +
+                                    weather_df['Month'].astype(str).str.zfill(2) + '-' +
+                                    weather_df['Day'].astype(str).str.zfill(2) + ' ' +
+                                    weather_df['Hour'])
+        weather_df['time'] = weather_df['time'].dt.tz_localize('UTC')
         logging.info("Weather data loaded and preprocessed successfully.")
         return weather_df
     except Exception as e:

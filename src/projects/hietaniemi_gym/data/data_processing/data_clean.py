@@ -14,7 +14,7 @@ def max_na_series(column: pd.Series) -> int:
         logging.error(f"Error calculating max NA series: {e}")
         raise
 
-def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+def data_clean_na(df: pd.DataFrame) -> pd.DataFrame:
     """
     Cleans the combined DataFrame by dropping rows with NaN values.
     """

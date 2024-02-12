@@ -1,7 +1,7 @@
 import pandas as pd
 import logging
 import copy
-from projects.hietaniemi_gym.data.consts import DEVICE_COLUMNS, TIME_COL_NAME
+from src.projects.hietaniemi_gym.data.data_consts import DEVICE_COLUMNS, TIME_COL_NAME
 
 def aggregate_hourly_usage(dataframe: pd.DataFrame, time_col: str = TIME_COL_NAME) -> pd.DataFrame:
     """
@@ -79,6 +79,4 @@ def add_sum_minutes_feature(dataframe: pd.DataFrame, device_columns: list = DEVI
     """
     dataframe['sum_minutes'] = dataframe[device_columns].sum(axis=1)
     return dataframe
-
-
 
