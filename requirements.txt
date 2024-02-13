@@ -9,4 +9,5 @@ joblib
 python-dotenv
 torch
 mlflow
--e .
+pathlib 
+# -e .
