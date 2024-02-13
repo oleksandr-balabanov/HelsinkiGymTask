@@ -129,7 +129,7 @@ ENV/
 env.bak/
 venv.bak/
 artifacts/
-config/
+#config/
 Dockerfile
 
 # Spyder project settings
