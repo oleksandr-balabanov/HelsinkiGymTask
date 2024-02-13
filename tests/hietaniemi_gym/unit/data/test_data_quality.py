@@ -11,11 +11,9 @@ def hietaniemi_gym_data_df():
     app_env = 'development'
     env_file = f"config/.env.{app_env}"
     load_dotenv(dotenv_path=env_file)
-    print(f"env {env_file}")
 
     # get data path
     gym_data_path = os.getenv('GYM_DATA_PATH')
-    print(f"gym {gym_data_path}")
     return load_gym_data(gym_data_path)
 
 def test_row_count(hietaniemi_gym_data_df):

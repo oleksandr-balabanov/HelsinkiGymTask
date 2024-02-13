@@ -14,12 +14,9 @@ root/
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml
-│       └── cd.yml
 │
 ├── config/
 │   ├── .env.development
-│   ├── .env.test
-│   ├── .env.production
 │
 ├── docs/
 │   └── [project_name]/
