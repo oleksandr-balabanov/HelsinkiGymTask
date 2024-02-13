@@ -8,4 +8,5 @@ pytest
 joblib
 python-dotenv
 torch
+mlflow
 -e .
