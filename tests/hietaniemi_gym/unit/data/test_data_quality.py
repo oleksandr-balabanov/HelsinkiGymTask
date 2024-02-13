@@ -29,6 +29,7 @@ def test_date_range(hietaniemi_gym_data_df):
     assert min_date >= pd.Timestamp('2020-04-24', tz='UTC'), f"The dataset should have records from 2020-04-24, but starts from {min_date}."
     assert max_date < pd.Timestamp('2021-05-12', tz='UTC'), f"The dataset should have records up to 2021-05-11, but goes until {max_date}."
 
+
 def test_positive_values(hietaniemi_gym_data_df):
     numeric_cols = hietaniemi_gym_data_df.select_dtypes(include=['number']).columns
     assert (hietaniemi_gym_data_df[numeric_cols] >= 0).all().all(), "All values in the numerical columns should be positive."
