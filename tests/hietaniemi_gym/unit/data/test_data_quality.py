@@ -3,8 +3,7 @@ import os
 from dotenv import load_dotenv
 from src.projects.hietaniemi_gym.data.data_processing.data_loader import load_gym_data
 import pytest
-from pathlib import Path
-
+from src.projects.hietaniemi_gym.data.data_consts import DEVICE_COLUMNS, TIME_COL_NAME
 @pytest.fixture(scope="module")
 def hietaniemi_gym_data_df():
     # load env
@@ -21,7 +20,7 @@ def test_row_count(hietaniemi_gym_data_df):
     assert row_count > 50000, f"The dataset should have more than 50,000 rows, but has {row_count}."
 
 def test_date_range(hietaniemi_gym_data_df):
-    time_data = pd.to_datetime(hietaniemi_gym_data_df['time'])
+    time_data = pd.to_datetime(hietaniemi_gym_data_df[TIME_COL_NAME])
     min_date = time_data.min()
     max_date = time_data.max()
     assert min_date >= pd.Timestamp('2020-04-24', tz='UTC'), f"The dataset should have records from 2020-04-24, but starts from {min_date}."
