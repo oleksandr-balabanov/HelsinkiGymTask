@@ -9,7 +9,7 @@ from pathlib import Path
 def hietaniemi_gym_data_df():
     # load env
     app_env = 'development'
-    env_file = Path(f"config/.env.{app_env})")
+    env_file = Path(f"config/.env.{app_env}")
     load_dotenv(dotenv_path=env_file)
     # get data path
     gym_data_path = os.getenv('GYM_DATA_PATH')
